@@ -1,0 +1,56 @@
+<div class="sme-layout-absolute sme-position-inset-none sme-arrange-stack-v">
+    <section class="sme-position-flex-none">
+        <h2>Software Center Anywhere</h2>
+    </section>
+    <section class="sme-position-flex-none">
+        <br/>
+        <ul class="sme-pivot" role="tablist" role="presentation">
+            <li [class.active]="tabIndex===1">
+                <a (click)="clickTab(1)">Applications</a>
+            </li>
+            <li [class.active]="tabIndex===2">
+                <a (click)="clickTab(2)">Updates</a>
+            </li>
+        </ul>
+    </section>
+    <section *ngIf="tabIndex==1" class="sme-position-flex-auto sme-arrange-stack-v">
+        <h4 class="sme-position-flex-none">Applicatons (Machine)</h4>
+        <div class="sme-layout-relative sme-position-flex-auto">
+            <sme-data-table #appDataTable [items]="appSource" [(selection)]="selectedData1" selectionMode="multiple" class="sme-layout-absolute sme-position-inset-none"
+                [defaultSortColumn]="sortByName" [defaultSortMode]="1">
+                <sme-data-table-column #sortByName field="fullName" header="Name" sortable="true" width="50%"></sme-data-table-column>
+                <sme-data-table-column field="publisher" header="Publisher" sortable="true"></sme-data-table-column>
+                <sme-data-table-column field="softwareVersion" header="Version" sortable="true"></sme-data-table-column>
+            </sme-data-table>
+        </div>
+        <div class="sme-position-flex-none">
+            <span class='selected-items-1' *ngIf="selectedData1 && selectedData1.length<2">
+                <span *ngFor="let item of selectedData1"><b>{{item.fullName}}</b><br />{{item.description}}</span>
+            </span>
+            <span *ngIf="selectedData1 && selectedData1.length>=2">
+                <em>{{selectedData1.length}} items</em>
+            </span>
+        </div>
+    </section>
+    <section *ngIf="tabIndex==2" class="sme-position-flex-auto sme-arrange-stack-v">
+        <h4 class="sme-position-flex-none">Updates</h4>
+        <div class="sme-layout-relative sme-position-flex-auto">
+            <sme-data-table #updatesDataTable [items]="updateSource" [(selection)]="selectedData2" selectionMode="multiple" class="sme-layout-absolute sme-position-inset-none"
+            [defaultSortColumn]="sortByName" [defaultSortMode]="1">
+                <sme-data-table-column #sortByName field="name" header="Name" sortable="true" width=50%></sme-data-table-column>
+                <sme-data-table-column field="publisher" header="Publisher" sortable="true"></sme-data-table-column>
+                <sme-data-table-column field="deadline" header="Status" sortable="true"></sme-data-table-column>
+            </sme-data-table>
+        </div>
+        <div class="sme-position-flex-none">
+            <span class='selected-items-2' *ngIf="selectedData2 && selectedData2.length<2">
+                <span *ngFor="let item of selectedData2"><b>{{item.name}}</b> <em>(Article ID {{item.articleID}})</em><br />{{item.description}}
+                <br /><!--<button (click)="installUpdate(item.__PATH)">Install</button><br />{{updateReturn}}--></span>
+            </span>
+            <span *ngIf="selectedData2 && selectedData2.length>=2">
+                <em>{{selectedData2.length}} items</em>
+            </span>
+        </div>
+    </section>
+    <button (click)="updateLayout()">Refresh</button>
+</div>

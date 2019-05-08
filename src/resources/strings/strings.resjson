@@ -1,0 +1,13 @@
+{
+    "//": "manifest section",
+    "AltrhombusSoftwareCenter_Manifest_displayName": "SoftwareCenter",
+    "AltrhombusSoftwareCenter_Manifest_description": "{!product-description}",
+    "AltrhombusSoftwareCenter_Manifest_keywords": "SME",
+
+    "//": "SoftwareCenter",
+    "AltrhombusSoftwareCenter_title": "SoftwareCenter",
+
+    "//": "about",
+    "AltrhombusSoftwareCenter_about": "{!product-about}",
+    "AltrhombusSoftwareCenter_aboutDescription": "{!product-about-description}"
+}
